@@ -1,0 +1,64 @@
+#include <kipr/botball.h>
+#include</home/root/Documents/KISS/Jonathan H/main/include/DemoLibrary.h>
+#define OPEN 2013
+#define CLOSED 284
+#define UP 303
+#define DOWN 1344
+
+int main(){
+    
+    //resets claw 
+   	servo(0,UP);
+    msleep(500);
+    servo(3,OPEN);
+    
+    //comes down and grabs claw
+    msleep(1000);
+    servo(0,DOWN);
+    msleep(500);
+    servo(3,CLOSED);
+    
+    //bring car up 
+    servo(0,UP);
+    
+    //line up with black line
+    squareUp(340);
+    
+    //move forward and turn
+    gyroStraight(1500,500);
+    msleep(1000);
+    callibrateGyros();
+    gyroTurn(-500,500,90);
+    msleep(2000);
+    
+    //square up
+    squareUp(500);
+    msleep(1000);
+    squareUpWhite(500);
+    
+    //turn into center 
+    mav(0,200);
+    mav(3,200);
+    msleep(2500);
+    callibrateGyros();
+    gyroTurn(500,-500,90);
+    
+    //move forward 
+    mav(0,200);
+    mav(3,200);
+    msleep(2000);
+    mav(0,0);
+    mav(3,0);
+    msleep(1000);
+    servo(0,869);
+    servo(3,OPEN);
+    
+    //turn around
+    gyroTurn(500,-500,180);
+    servo(0,DOWN);
+    
+    lineFollow(9615,0);
+    
+   
+    return 0; 
+}
